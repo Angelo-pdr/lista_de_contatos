@@ -5,27 +5,35 @@ import { useDispatch } from 'react-redux'
 import { edit, remover } from '../../stores/reducers/users'
 import { useState } from 'react'
 
-type CardProps = Contact
+type CardProps = {
+  contacts: Contact
+}
 
-const Contatc = ({ email, id, name, phone, favorites }: CardProps) => {
+const Contatc = ({contacts}: CardProps) => {
   const dispatch = useDispatch()
   const [isEditing, setIsEditing] = useState(false)
-  const [newName, setNewname] = useState(name)
-  const [newPhone, setNewPhone] = useState(phone)
-  const [newEmail, setNewEmail] = useState(email)
+  const [newName, setNewname] = useState(contacts.name)
+  const [newPhone, setNewPhone] = useState(contacts.phone)
+  const [newEmail, setNewEmail] = useState(contacts.email)
 
   function newcontactvalue() {
     setIsEditing(false)
     dispatch(
-      edit({ id, name: newName, phone: newPhone, email: newEmail, favorites })
+      edit({
+        id: contacts.id,
+        name: newName,
+        phone: newPhone,
+        email: newEmail,
+        favorite: contacts.favorite
+      })
     )
   }
 
   function cancelEdit() {
     setIsEditing(false)
-    setNewname(name)
-    setNewPhone(phone)
-    setNewEmail(email)
+    setNewname(contacts.name)
+    setNewPhone(contacts.phone)
+    setNewEmail(contacts.email)
   }
 
   return (
@@ -50,8 +58,8 @@ const Contatc = ({ email, id, name, phone, favorites }: CardProps) => {
             </>
           ) : (
             <>
-              <p>Telefone: {phone}</p>
-              <p>Nome: {name}</p>
+              <p>Telefone: {contacts.phone}</p>
+              <p>Nome: {contacts.name}</p>
             </>
           )}
         </div>
@@ -65,7 +73,7 @@ const Contatc = ({ email, id, name, phone, favorites }: CardProps) => {
             onChange={(event) => setNewEmail(event.target.value)}
           />
         ) : (
-          <h2>Email: {email}</h2>
+          <h2>Email: {contacts.email}</h2>
         )}
         <ContentButton>
           <Button>Favoritar</Button>
@@ -77,7 +85,9 @@ const Contatc = ({ email, id, name, phone, favorites }: CardProps) => {
           {isEditing ? (
             <Button onClick={newcontactvalue}>Salvar</Button>
           ) : (
-            <Button onClick={() => dispatch(remover(id))}>Remover</Button>
+            <Button onClick={() => dispatch(remover(contacts.id))}>
+              Remover
+            </Button>
           )}
         </ContentButton>
       </Infor>

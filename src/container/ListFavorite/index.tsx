@@ -5,32 +5,34 @@ import { TopBody, Header, Button } from '../../styles/index'
 import { RootState } from '../../stores'
 import { useNavigate } from 'react-router-dom'
 
-const ListContact = () => {
+const ListFavorite = () => {
   const navigate = useNavigate()
 
-  const { itens } = useSelector((state: RootState) => state.contact)
+  const { favorites } = useSelector((state: RootState) => state.contact)
   return (
     <Container>
       <TopBody>
         <Header>
           <h1>Lista de Contatos</h1>
           <div>
-            <Button onClick={() => navigate('/novoContato')}>
-              Adicionar Contato
-            </Button>
-            <Button onClick={() => navigate('/favoritos')}>Favoritos 0</Button>
+            <Button onClick={() => navigate('/')}>Home</Button>
+            <Button onClick={() => navigate('/favoritos')}>Favoritos {favorites.length}</Button>
           </div>
         </Header>
       </TopBody>
       <Contacts>
-        {itens.map((user) => (
-          <div key={user.id}>
-            <Contact contacts={user} />
-          </div>
-        ))}
+        {favorites.length > 0 ? (
+          favorites.map((user) => (
+            <div key={user.id}>
+              <Contact contacts={user} />
+            </div>
+          ))
+        ) : (
+          <h1>Nenhum contato favorito</h1>
+        )}
       </Contacts>
     </Container>
   )
 }
 
-export default ListContact
+export default ListFavorite

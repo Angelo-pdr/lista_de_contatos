@@ -3,20 +3,20 @@ class Contact {
   name: string
   phone: string
   email: string
-  favorites: boolean
+  favorite: boolean
 
   constructor(
     id: number,
     name: string,
     phone: string,
     email: string,
-    favorites: boolean
+    favorite: boolean
   ) {
     this.id = id
     this.name = name
     this.phone = phone
     this.email = email
-    this.favorites = favorites
+    this.favorite = favorite
   }
 }
 

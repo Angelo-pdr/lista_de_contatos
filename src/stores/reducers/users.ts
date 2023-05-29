@@ -1,14 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import Contatos from '../../models/contact'
+import Contact from '../../models/contact'
 
-const initialState = {
+type ContactState = {
+  itens: Contact[]
+  favorites: Contact[]
+}
+
+const initialState: ContactState = {
   itens: [
     {
       id: 1,
       name: 'Angelo da Silva pedrosa',
       phone: '(31) 9 7573-2125',
       email: 'angelo.ppedrosa@gmail.com',
-      favorites: false
+      favorite: false
     },
 
     {
@@ -16,7 +21,7 @@ const initialState = {
       name: 'Crislayne de Souza Preisigke',
       phone: '(31) 9 7874-3125',
       email: 'crislayne.souza@gmail.com',
-      favorites: false
+      favorite: false
     },
 
     {
@@ -24,10 +29,10 @@ const initialState = {
       name: 'Gabriel da Silva pedrosa',
       phone: '(31) 9 98543-7175',
       email: 'gabriel.ppedrosa@gmail.com',
-      favorites: false
+      favorite: false
     }
   ],
-  favoriteItens: []
+  favorites: []
 }
 
 export const contactSlice = createSlice({
@@ -39,7 +44,7 @@ export const contactSlice = createSlice({
         (contato) => contato.id !== action.payload
       )
     },
-    edit: (state, action: PayloadAction<Contatos>) => {
+    edit: (state, action: PayloadAction<Contact>) => {
       const editedtask = state.itens.findIndex(
         (c) => c.id === action.payload.id
       )

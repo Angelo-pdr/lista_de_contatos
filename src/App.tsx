@@ -1,4 +1,6 @@
 import { Home } from './pages/Home'
+import NewContact from './pages/addContatc'
+import Favorites from './pages/favorites'
 import GlobalStyle from './styles'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
@@ -6,6 +8,14 @@ const routes = createBrowserRouter([
   {
     path: '/',
     element: <Home />
+  },
+  {
+    path: '/favoritos',
+    element: <Favorites />
+  },
+  {
+    path: '/novoContato',
+    element: <NewContact />
   }
 ])
 

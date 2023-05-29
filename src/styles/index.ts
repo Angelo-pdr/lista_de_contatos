@@ -29,5 +29,34 @@ export const Button = styled.button`
     background-color: #9cced9;
   }
 `
+export const TopBody = styled.div`
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+export const Header = styled.header`
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1{
+    font-size: 1.2rem
+    font-weight: bold;
+  }
+
+  div{
+    display: flex;
+    align-itens: center;
+    gap: 10px
+  }
+`
 
 export default GlobalStyle
