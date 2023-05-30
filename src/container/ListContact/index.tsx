@@ -1,29 +1,42 @@
 import { useSelector } from 'react-redux'
 import Contact from '../../components/Contact'
 import { Contacts, Container } from './styles'
-import { TopBody, Header, Button } from '../../styles/index'
+import { TopBody, Header } from '../../styles/index'
 import { RootState } from '../../stores'
-import { useNavigate } from 'react-router-dom'
+import ButtonFavorite from '../../components/ButtonFavorite'
+import Search from '../Search'
 
 const ListContact = () => {
-  const navigate = useNavigate()
-
   const { itens } = useSelector((state: RootState) => state.contact)
+  const { contatc } = useSelector((state: RootState) => state.search)
+
+  const filteredContatc = () => {
+    let filtered = itens
+    if (contatc != '') {
+      filtered = filtered.filter(
+        (item) =>
+          item.name.toLocaleLowerCase().search(contatc.toLocaleLowerCase()) >= 0
+      )
+
+      return filtered
+    } else {
+      return itens
+    }
+  }
+
   return (
     <Container>
       <TopBody>
         <Header>
           <h1>Lista de Contatos</h1>
           <div>
-            <Button onClick={() => navigate('/novoContato')}>
-              Adicionar Contato
-            </Button>
-            <Button onClick={() => navigate('/favoritos')}>Favoritos 0</Button>
+            <Search />
+            <ButtonFavorite />
           </div>
         </Header>
       </TopBody>
       <Contacts>
-        {itens.map((user) => (
+        {filteredContatc().map((user) => (
           <div key={user.id}>
             <Contact contacts={user} />
           </div>

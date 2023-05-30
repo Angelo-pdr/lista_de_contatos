@@ -10,12 +10,10 @@ export const Container = styled.div`
   box-shadow: 3px 3px 3px 3px #9cced9;
 `
 
-export const Img = styled.div`
+export const Img = styled.img`
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  padding .5rem 1rem;
-  background-color: black;
+
 `
 export const Content = styled.div`
   width: 100%;
@@ -53,6 +51,6 @@ export const Input = styled.input`
   border-bottom: 1px solid black;
   display: inline-block;
   font-size: 1rem;
-  padding: 0px .5rem;
+  padding: 0px 0.5rem;
   outline: none;
 `

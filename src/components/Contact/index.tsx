@@ -1,59 +1,73 @@
 import { Container, Img, Content, Infor, ContentButton, Input } from './styles'
 import Contact from '../../models/contact'
-import { Button } from '../../styles/index'
+import { Button, ButtonFavorite } from '../../styles/index'
 import { useDispatch } from 'react-redux'
-import { edit, remover } from '../../stores/reducers/users'
+import { addFavorite, edit, remover } from '../../stores/reducers/users'
 import { useState } from 'react'
+import user from '../../img/user.png'
 
 type CardProps = {
   contacts: Contact
 }
 
-const Contatc = ({contacts}: CardProps) => {
+const Contatc = ({ contacts }: CardProps) => {
   const dispatch = useDispatch()
   const [isEditing, setIsEditing] = useState(false)
-  const [newName, setNewname] = useState(contacts.name)
-  const [newPhone, setNewPhone] = useState(contacts.phone)
-  const [newEmail, setNewEmail] = useState(contacts.email)
+  const [name, setName] = useState(contacts.name)
+  const [phone, setPhone] = useState(contacts.phone)
+  const [email, setEmail] = useState(contacts.email)
 
   function newcontactvalue() {
     setIsEditing(false)
     dispatch(
       edit({
         id: contacts.id,
-        name: newName,
-        phone: newPhone,
-        email: newEmail,
+        name,
+        phone,
+        email,
         favorite: contacts.favorite
+      })
+    )
+  }
+
+  function addFavorites() {
+    console.log(!contacts.favorite)
+    dispatch(
+      addFavorite({
+        id: contacts.id,
+        name: contacts.name,
+        phone: contacts.phone,
+        email: contacts.email,
+        favorite: !contacts.favorite
       })
     )
   }
 
   function cancelEdit() {
     setIsEditing(false)
-    setNewname(contacts.name)
-    setNewPhone(contacts.phone)
-    setNewEmail(contacts.email)
+    setName(contacts.name)
+    setPhone(contacts.phone)
+    setEmail(contacts.email)
   }
 
   return (
     <Container>
       <Content>
-        <Img></Img>
+        <Img src={user} alt="teste" />
         <div>
           {isEditing ? (
             <>
               <Input
-                value={newPhone}
+                value={phone}
                 placeholder="Telefone:"
                 type="text"
-                onChange={(event) => setNewPhone(event.target.value)}
+                onChange={(event) => setPhone(event.target.value)}
               />
               <Input
-                value={newName}
+                value={name}
                 placeholder="Nome:"
                 type="text"
-                onChange={(event) => setNewname(event.target.value)}
+                onChange={(event) => setName(event.target.value)}
               />
             </>
           ) : (
@@ -67,16 +81,21 @@ const Contatc = ({contacts}: CardProps) => {
       <Infor>
         {isEditing ? (
           <Input
-            value={newEmail}
+            value={email}
             placeholder="Email:"
             type="text"
-            onChange={(event) => setNewEmail(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
           />
         ) : (
           <h2>Email: {contacts.email}</h2>
         )}
         <ContentButton>
-          <Button>Favoritar</Button>
+          <ButtonFavorite
+            colorFavorite={contacts.favorite}
+            onClick={addFavorites}
+          >
+            Favoritar
+          </ButtonFavorite>
           {isEditing ? (
             <Button onClick={cancelEdit}>Cancelar</Button>
           ) : (

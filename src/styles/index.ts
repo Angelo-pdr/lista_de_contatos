@@ -1,5 +1,9 @@
 import styled, { createGlobalStyle } from 'styled-components'
 
+type FavoritoProps = {
+  colorFavorite: boolean
+}
+
 const GlobalStyle = createGlobalStyle`
   *{
     margin: 0;
@@ -29,6 +33,22 @@ export const Button = styled.button`
     background-color: #9cced9;
   }
 `
+export const ButtonFavorite = styled(Button)<FavoritoProps>`
+  padding: 0.3rem 1rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: none;
+  background-color: ${(props) => (props.colorFavorite ? '#00BF8A' : '#73bcd9')};
+  text-aling: center;
+  font-family: 'Roboto Mono', monospace;
+
+  &:hover {
+    background-color: ${(props) =>
+      props.colorFavorite ? '#00FFB9' : '#9cced9'};
+  }
+`
+
 export const TopBody = styled.div`
   width: 100%;
   height: 50px;
@@ -47,15 +67,20 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  h1{
-    font-size: 1.2rem
+  h1 {
+    font-size: 1rem;
     font-weight: bold;
+    flex: now-rap;
   }
 
-  div{
+  div {
+    max-width: 50%;
+    max-height: 100%;
     display: flex;
     align-itens: center;
-    gap: 10px
+    justify-content: flex-end;
+    width: 100%;
+    gap: 5px;
   }
 `
 

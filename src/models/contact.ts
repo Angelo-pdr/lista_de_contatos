@@ -1,12 +1,11 @@
-class Contact {
-  id: number
+class ContactProps {
+  id: string
   name: string
   phone: string
   email: string
   favorite: boolean
-
   constructor(
-    id: number,
+    id: string,
     name: string,
     phone: string,
     email: string,
@@ -20,4 +19,4 @@ class Contact {
   }
 }
 
-export default Contact
+export default ContactProps
