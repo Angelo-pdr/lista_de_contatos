@@ -81,7 +81,15 @@ export const Header = styled.header`
     justify-content: flex-end;
     width: 100%;
     gap: 5px;
+    @media (max-width: 700px) {
+      display: flex;
+      align-items: center;
+      max-width: 100%;
+    }
+
   }
+
+
 `
 
 export default GlobalStyle

@@ -26,6 +26,3 @@ const Search = () => {
 }
 
 export default Search
-function useSelecto() {
-  throw new Error('Function not implemented.')
-}

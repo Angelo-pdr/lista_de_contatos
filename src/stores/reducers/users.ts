@@ -10,7 +10,7 @@ const initialState: ContactState = {
     {
       id: '1',
       name: 'Angelo da Silva pedrosa',
-      phone: '(31) 9 7573-2125',
+      phone: '31975732125',
       email: 'angelo.ppedrosa@gmail.com',
       favorite: false
     },
@@ -18,7 +18,7 @@ const initialState: ContactState = {
     {
       id: '2',
       name: 'Crislayne de Souza Preisigke',
-      phone: '(31) 9 7874-3125',
+      phone: '31978743125',
       email: 'crislayne.souza@gmail.com',
       favorite: false
     },
@@ -26,7 +26,7 @@ const initialState: ContactState = {
     {
       id: '3',
       name: 'Gabriel da Silva pedrosa',
-      phone: '(31) 9 98543-7175',
+      phone: '319985437175',
       email: 'gabriel.ppedrosa@gmail.com',
       favorite: false
     }

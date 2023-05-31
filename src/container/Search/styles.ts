@@ -63,5 +63,9 @@ export const Input = styled.input`
     from {
       width: 0%;
     }
+
+    @media(max-width: 770px){
+      width: 100%;
+    }
 }
 `

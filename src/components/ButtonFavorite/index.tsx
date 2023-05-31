@@ -9,7 +9,7 @@ const ButtonFavorite = () => {
   const navigate = useNavigate()
   const { itens } = useSelector((state: RootState) => state.contact)
   const [contact, setContact] = useState(0)
-  
+
   const quantityFavorites = () => {
     const quantity = itens.filter((c) => c.favorite === true)
     setContact(quantity.length)
@@ -22,7 +22,7 @@ const ButtonFavorite = () => {
 
   return (
     <ButtonFavorites onClick={() => navigate('/favoritos')}>
-      Favoritos {contact}
+      {contact}
     </ButtonFavorites>
   )
 }
